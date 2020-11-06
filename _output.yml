@@ -1,0 +1,9 @@
+bookdown::gitbook:
+  css: style.css
+  config:
+    toc:
+      before: |
+        <li><a href="./">Intuitive Guide to Linear Algebra</a></li>
+    edit: https://github.com/MoAllabbad/Intuitive-Guide-to-Linear-Algebra/edit/master/%s
+    download: ["epub"]
+bookdown::epub_book: default

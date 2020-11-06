@@ -1,0 +1,24 @@
+--- 
+title: "An Intuitive Guide to Linear Algebra"
+author: "Mohammad Allabbad"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+output: bookdown::gitbook
+documentclass: book
+bibliography: [book.bib, packages.bib]
+biblio-style: apalike
+github-repo: MoAllabbad/Intuitive-Guide-to-Linear-Algebra
+description: "This is a detailed and an Intuitive guide to Linear Algebra mathematics."
+---
+
+# Introduction  {-}
+
+This is a detailed and an Intuitive guide to Linear Algebra mathematics. We will start from first principles. 
+We aim to explore the concepts with minimum prior knowledge.
+Knowledge of *College Algebra* would be advantageous. We nevertheless explain most of the required concepts here. 
+Knowledge of things like equations and basic arithmetic is still needed. 
+
+The goal is to introduce things gradually with no logical hoops. 
+New concepts should either follow from previous discussions or basic logic. 
+Basic logic means things like $1+1=2$ and the statement that it is not possible that **A** is **B** and **A** is not **B** at the same time.
+You will notice how it is a common theme in the book that we will establish our rules based on basic logic and then build upon them.

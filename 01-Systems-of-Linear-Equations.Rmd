@@ -1,0 +1,997 @@
+
+```{r, setup, include=FALSE}
+knitr::opts_chunk$set(
+  echo=FALSE, warning=FALSE, message=FALSE, cache=TRUE
+)
+library(reticulate)
+```
+
+# Systems of Linear Equations {#Systems-of-Linear-Equations}
+
+## A Linear System of Equations
+Suppose you go to the supermarket with a certain budget in mind. 
+You love mangoes and your partner loves avocados, and you want to buy as much of these as your 20 bill budget allows. 
+Checking the prices, you see each mango costs 1 bill and each avocado costs 1 bill. Well, this is easy; since each item is exactly 1 bill, you can get a max of 20. 
+To be fair to your partner, you decide to get equal amounts of 10 of each fruit. 
+If we wanted to explicitly write this mathematically, we could do something as follows:
+
+$$(x\times mangoes) \times 1\,bill + (y \times avocados) \times 1\, bill= 20 \, bills$$
+
+The $x$ variable represents the number of mangoes and the $y$ variable represents the number of avocados. Note that we have different variables because the number of each fruit does not have to be the same. Here, you might have a gut feeling that we cannot solve this equation because we only have one equation and more than one unknown. That would be true and, that is something we will discuss extensively later. The bit where we said "to be fair ..." is where we say we want the number of fruits to be equal. To represent this mathematically, we set:
+
+$$x = y$$
+
+Now, we have a what is called a system of equations:
+
+$$(x\times mangoes) \times 1\,bill + (y \times avocados) \times 1\, bill= 20 \, bills$$
+$$x = y$$
+
+We call it a system to indicate that we are considering all the equations as a whole rather than individually. For easier reading and a bit more abstraction, we could rewrite the two equations as follows:
+
+$$x + y = 20$$
+$$    x = y $$
+
+We also call this a linear system. One reason this is called linear is because these equations represent lines graphically but, we will also discuss the meaning of linearity more abstractly in a later chapter.
+
+## Solving Systems of Equations 
+Continuing our fruits example, we already know that we should get $10$ mangoes and $10$ avocados. But, let us go through the exercise of systematically finding the answer.
+
+### Substitution
+
+```{example, Substitution1, echo=TRUE, include=TRUE}
+$$x + y = 20$$
+$$    x = y $$
+```
+
+Since $x = y$, we can substitute either $x$ for $y$ or $y$ for $x$ as their values are one and the same. We can then write the first equation as:
+
+$$x + x = 20$$
+
+or $$y + y = 20$$
+
+We can start by solving for $x$, where the left hand side (LHS) $x + x$ is $2x$. So, $x + x = 20$ becomes: $$2x = 20$$
+
+This is an equation, which means we can perform the same operation on both sides of the equation and the equality would still hold. So, we can divide both sides by 2 where the  LHS becomes $x$ and the RHS becomes $10$. So, the equation becomes:
+
+$$ x = 10$$
+
+That solved for $x$. To solve for $y$, we can similarly solve the equation:
+
+$$y + y = 20$$
+
+or we could go back to one of the original equations
+
+$$x + y = 20$$
+
+and substitute back the value of $x$ since we solved for it, to get:
+
+$$10 + y = 20$$
+
+Again, this is an equation so, we are able to perform the same operation on both sides. To solve for $y$, we will subtract $10$ from both sides:
+
+$$10 + y - 10 = 20 - 10$$
+
+Which gives the answer:
+$$ y = 10$$
+
+No surprise here, we got the answers we expected. 
+
+
+Now, let us say the mangoes and avocados are not exactly 1 bill each. For example, a mango is $1.34$ and an avocado is $0.89$. What is the maximum you can buy with the number of mangoes and avocados being equal? The answer now is not as intuitive as before so, this is a situation where the systematic method is valuable.
+
+Let us go back and try to apply the same steps. Our previous equation becomes:
+$$(x \times mangoes \times 1.34) \, bill + (y \times avocados \times 0.89) \, bill = 20 \times bills$$
+which simplifies to $$1.34x + 0.89y = 20$$
+
+So, now we have the following system:
+
+```{example, Substitution2, echo=TRUE, include=TRUE}
+$$1.34x + 0.89y = 20$$
+$$x = y$$
+```
+
+Let us start by substituting $y$ for $x$ this time since substituting the other way previously was arbitrary. We get:
+
+$$1.34y + 0.89y = 20$$
+
+Adding the LHS, we get:
+
+$$2.23y = 20$$
+
+Dividing both sides by $2.23$, we get:
+$$y = 8.97$$
+
+Since $x = y$, then also $$x = 8.97$$
+
+We previously substituted back in the first equation (here, that would be $1.34y + 0.89y = 20$) which was arbitrary and, as you can see it was easier to do that with the second equation here; $x=y%$. When it gets a bit more complicated, doing enough of these by hand should help develop an intuition of which route is best. 
+
+Now, the answer says to get $8.97$ mangoes and $8.97$ avocados, which is probably not possible. It is relatively easy to see here why you do not take the answer at face value since we are representing everyday objects. This is an instance where it is important to understand the tools we are using and the problem we are trying to solve and therefore, how applicable the tools are. 
+
+So, assuming that you cannot buy but whole fruits, then you can buy $8$ of each, saving $2 \times 0.97$. Or, you could break the other restriction of $x = y$ and buy one more of either mangoes or avocados.
+
+Let us take one more example this time just abstractly. Let us solve the following system of equation by substitution:
+
+```{example, Substitution3, echo=TRUE, include=TRUE}
+$$ x + 2y = 14$$
+$$ 3x - y = 7$$
+```
+
+To solve by substitution, we first need to isolate one variable. For example, we can isolate $x$ in the first equation as an easy choice as it has 1 coefficient. It does not matter here which equation and which variable we chose in terms of the answer. Some choices might just take more or fewer steps than others, but we should get the same answer. Isolating $x$ in the first equation, we get:
+
+$$x = 14 - 2y$$
+
+Now, we substitute that for $x$ in the other equation to get:
+
+$$ 3(14 - 2y) - y = 7$$
+
+We now have only one unknown, which we can solve for. This simplifies to $42 - 6y -y = 7$, which gives us:
+
+$$y = 5$$
+
+Now we plug this value back in any of the two original equations as we did before. We can pick any of the two equations because we used both to solve for $y$ and, $y=5$ is now tied to both. You might want to try the rest of this example yourself as a quick check that you are following, and see if you get $x = 4$.
+
+### Elimination
+Another method for solving systems of equations is called solving by elimination. It also relies on the fact that we can do the same operation to both sides of an equation without effecting the equality. Let us look at the following system of equations:
+
+```{example, Elimination1, echo=TRUE, include=TRUE}
+$$ 2x + 3y = 18 $$
+$$ 2x + 2y = 14 $$
+```
+
+If we pick any equation, we know two things; that by definition both sides are equal, and that we can perform the same operation to both sides and the equality still holds. So, if we pick the first equation and subtract the second equation from it as follows:
+
+
+$$ (2x + 3y) - (2x + 2y) = (18) - (14) $$
+
+On the LHS, the $x$ cancels out, which is why it called **Elimination**, and we are left with $y$. On the RHS, we get $4$. So now we have:
+
+$$ y = 4 $$
+
+Is this the correct answer for $y$? Let us explicitly state what we did, and why it is allowed.
+Consider the first equation again; we know we can add and subtract the same thing from both sides without affecting the equality. 
+The question then is, did we subtract the same thing from both sides? 
+| Since the second equation is, well an equation, then again by definitio both sides are equal. So, subtracting the LHS of the second equation from the LHS of the first equation while also subtracting the RHS of the second equation from the RHS of the first equation is performing the exact operation on both sides of the first equation. What we just did, and in general adding and subtracting equations of a system, still follows the basic logic of equality.
+
+Now that we know $y=4$, we can plug it back in any equation to solve for the remaining variable $x$. Let us pick the second equation, to get:
+
+$$ 2x + 2(4) = 14 $$
+
+Solving for $x$, we get that:
+
+$$ x = 3 $$
+
+Let us look at another system of equations:
+
+```{example, Elimination2, echo=TRUE, include=TRUE}
+$$ 2x + 3y = 18 $$
+$$ x + 2y = 7 $$
+```
+
+It is not useful here to just add or subtract the equations, as that will not eliminate any variable. We need to first multiply one or more of the equations by a factor so that either of the variables $x$ or $y$ has the same coefficient in both equations. For example, we could multiply the first equation by $1/2$ to get $x + 3/2 y = 9$. Now, we have the same coefficient for $x$ which is $1$ so, we can subtract one equation from the other to eliminate $x$ and then solve for $y$. However, we are now dealing with fractions, which is something we would like to avoid; not only because it would be easier to deal with by hand, but also it is better for numerical computations. 
+So, we could instead multiply the second equation by $2$ to get $2x + 4y = 14$. Now we have the same system of equations as before in example \@ref(exm:Elimination1), so we can proceed the same way.
+
+You may or may not have realized that this was *basically* the same system we just solved. This might provide you another chance for the realization that it is permitted to do the same operation on both sides of an equation.
+
+Final note, if we cannot multiply one equation to get a coefficient equal to that of another equation, then we can multiply both equations by the coefficient of the other equation's variable (the variable that we want to eliminate).
+
+## Consistent and Inconsistent Systems of Equations 
+
+Let us consider the fruits' system of equations we saw earlier:
+
+$$x + y = 20$$
+$$x = y$$
+
+Each equation graphically represents a line. $x + y = 20$ can be graphed as follows:
+
+```{python, include=FALSE}
+import plotly.express as px
+x = [x for x in range(-5,5)]
+y = [20 - x for x in range(-5,5)]
+fig = px.line(x=x, y=y)
+html_fig = fig.to_html()
+```
+```{r, fig.cap='Graph of x + y = 20'}
+htmltools::knit_print.html(py$html_fig)
+```
+<br>
+Also, $x = y$ can be graphed as follows:
+
+```{python, include=FALSE}
+import plotly.express as px
+x = [x for x in range(-5,5)]
+fig = px.line(x=x, y=x)
+html_fig = fig.to_html()
+
+```
+```{r, fig.cap='Graph of y = x'}
+htmltools::knit_print.html(py$html_fig)
+```
+<br>
+Graphing the two lines together, we get:
+```{python, include=FALSE}
+import plotly.graph_objects as go
+fig = go.Figure()
+x_range = range(-5,20)
+x = [x for x in x_range]
+fig.add_trace(go.Scatter(x=x, y=x, mode="lines", name="y = x"))
+y = [20 - x for x in x_range]
+fig.add_trace(go.Scatter(x=x, y=y, mode="lines", name="y = 20 - x"))
+html_fig = fig.to_html()
+```
+```{r, fig.cap="Graph of y = x"}
+htmltools::knit_print.html(py$html_fig)
+```
+<br>
+Where the intersection point $(10, 10)$ for $x=10$ and $y=10$ represents the solution we found earlier to the system of equations.
+
+If the intersection point is the solution to the system of equations, then we ask about the possibilities of having solutions graphically.
+
+As we will prove shortly, a system of equations can have only one of these three possibilities:
+
+1. No solution 
+2. One solution 
+3. Infinite number of solutions
+
+These are the only possibilities. So, there is no finite number of solutions more than $1$. Let us consider two lines in a two-dimensional (2D) Cartesian plane; *The discussion forward is concerned with Euclidean Geometry*.
+
+The two lines can either be parallel or not. If they are not parallel, and going in a straight line, by definition, they must meet at one and only one point. 
+Let us explicitly go through this exercise as this is the foundation and, we need to make it solid. 
+Consider the $x$-axis as one line and another line that is *not* parallel to it, which we will call $B$. 
+If we were to pick a point $P$ on line $B$ and start walking alongside the line, one direction would get us closer to the x-axis and, the other direction will always get us further because they are both straight lines. 
+Going along the direction towards the $x$-axis, we will hit the $x$-axis at one point. Once we get to our solution point -the intersection point- and keep going, the only possibility is to go further from the $x$-axis due to linearity. 
+Therefore, in such case where we have two non-parallel lines, there must be one and only one solution. 
+
+This can be visualized by the following graph:
+
+```{python, include=FALSE}
+# Graph of y = x and y = 0
+import plotly.graph_objects as go
+x = [x for x in range(-5,10)]
+y = [-10+5*x for x in range(-5,10)]
+fig = go.Figure()
+fig.add_trace(go.Scatter(x=x, y=y, mode="lines"))
+fig.update_xaxes(zeroline=False)
+fig.update_yaxes(zeroline=True, zerolinewidth=2, zerolinecolor='Black')
+html_fig = fig.to_html()
+```
+```{r, fig.cap='Graph of y = x and y = 0'}
+htmltools::knit_print.html(py$html_fig)
+```
+<br>
+If that is not the case, meaning the two lines are not non-parallel, they can only be parallel. 
+If two lines are parallel, they can either be separate or coincide (lie on top of each other). 
+
+If they are parallel and separate, traveling along any line in any direction does not get us any closer to the other line. 
+In such a case where we have two parallel lines but are separate, there is no solution. 
+This covers the second possibility of the system of equations. 
+
+This second possibility can be visualized by the following graph:
+
+```{python, include=FALSE}
+import plotly.graph_objects as go
+fig = go.Figure()
+x = [x for x in range(-5,10)]
+fig.add_trace(go.Scatter(x=x, y=x, mode="lines", name="y = x"))
+y = [x + 5 for x in range(-5,10)]
+fig.add_trace(go.Scatter(x=x, y=y, mode="lines", name="y = x + 5"))
+html_fig = fig.to_html()
+```
+```{r, fig.cap='Graph of y = x and y = x + 5'}
+htmltools::knit_print.html(py$html_fig)
+```
+<br>
+If the two lines are parallel but are not separate, it means they represent the same line. 
+So, all points of a line meet the other line. 
+That means we have infinite number of solutions. This covers that last possibility. 
+
+This third and last possibility can be visualized by the following graph (if you only see one line, it is because the two lines are overlapping):
+
+```{python, include=FALSE}
+import plotly.graph_objects as go
+fig = go.Figure()
+x = [x for x in range(-5,10)]
+fig.add_trace(go.Scatter(x=x, y=x, mode="lines", name="y = x"))
+fig.add_trace(go.Scatter(x=x, y=x, mode="lines", name="x = y"))
+html_fig = fig.to_html()
+```
+```{r, fig.cap='Graph of y = x and y = x'}
+htmltools::knit_print.html(py$html_fig)
+```
+<br>
+By exhaustion, we have the following theorem:
+<br>
+```{theorem, 3poss, echo=TRUE, include=TRUE}
+   A system of linear equations must have either no solution, one solution or infinite number of solutions.
+```
+<br>
+A theorem like this has implications that might not be obvious immediately, so we explicitly state them as corollaries:
+
+|     **Corollary (a) of TH \@ref(thm:3poss)**:
+|     *A system of equations cannot have a finite number of solutions other than one solution.*
+
+|     **Corollary (b) of TH \@ref(thm:3poss)**:
+|     *If a system is found to have more than one solution, it must have infinitely many solutions.*
+<br>
+A corollary follows logically. It might not be obvious to derive but, once stated, it should be evident.
+
+Considering **Theorem \@ref(thm:3poss)** when we say that a system of equations has a solution, does that mean it has only one solution or it has at least one solution, so possibly infinite? 
+To avoid the ambiguity between whether a system has a solution at all, and whether it has only one or not, we call a system that has a solution or infinitely many a **consistent** system, and we call a system that does not have any solution an **inconsistent** system. 
+Then, a consistent system of equations has one solution or infinite solutions. 
+
+## Variable, Equation and Constraint Counting
+
+Earlier, we explored graphically the solution possibilities. Another way to get some insight is by looking at the number of variables against the number of equations in the system. 
+If the number of equations is fewer than the number of variables, we call the system **undetermined**. 
+If the number of equations is equal to the number of variables, we call the system **determined**. 
+If the system has more equations than varaiables, then the system is called **overdetermined**. 
+We will continue to use graphs throughout to build intuition, but we will end up with a theorem that does not depend on graphs.
+
+A variable on its own has no constraints, so it has infinite number of possibilities, that is, until a constraint is imposed. In a system of equations, the equation itself is the constraint. For example, $x = 1$ has one variable and one equation, i.e one constraint. The solution here is unique. On the other hand, $x + y = 2$, has fewer constraints than variables. Although the variables do not have complete freedom, this still has infinite possibilities. By comparing the number of constraints and variables, we can gain information about the system.
+
+Before we discuss that, we first need to briefly discuss **equivalence**:
+
+Let us look again at this simple system
+
+$$x = 1$$
+
+If we repeat the equation as follows:
+
+$$x = 1$$
+$$x = 1$$
+
+Then, we are not adding any information. We added a second equation but it states the same thing, so this system still has one constraint. Similarly:
+
+$$x = 1$$
+$$2x = 2$$
+
+This only has one constraint as well. The two equations, although do not look the same, are **equivalent**, because the solution for both is $x=1$. 
+Any equations that can be derived from each other are called **equivalent**. 
+By 'derive', we mean that if we can perform the allowed operations on one of the equations - such as by adding the same thing to both sides of an equation or multiplying both sides or performing a combination of these -, and we can get to the other equation, then the two equations are equivalent.
+
+Let us then proceed to our discussion of counting variables and equations.
+
+### Undetermined Systems
+An undetermined system has fewer equations than variables. Consider this simple example:
+
+$$ x + y = 10$$
+
+What is the solution to $x$ and $y$? Well, it could be that $x = 5$ and $y = 5$. That is *a* solution. 
+But it could also be that $x = 6$ and $y = 4$. In fact, we have infinite number of solutions where $x$ and $y$ add up to $10$. 
+(We also know by **Theorem \@ref(thm:3poss)** that if we find more than $1$ solution, then we have infinitely many). 
+But, we may ask, can an undetermined system ever have a unique solution?
+
+Let us think about this. A system of equations must have at least one equation. For it to be undetermined, then it must have more variables. 
+The simplest case is what we just saw, one equation and two unknowns, where this will always represent a line. 
+A line by definition has an infinite number of points, so there is no unique solution there. 
+If we graph this equation $x + y = 10$ which we may rewrite in more standard form as $y = 10 - x$, then any point of the infinite number of points on the line you see is a valid solution.
+
+```{python, include=FALSE}
+# graph y = 10 -x
+import plotly.graph_objects as go
+x = [x for x in range(-5,10)]
+y = [10 -x for x in range(-5,10)]
+fig = go.Figure()
+fig.add_trace(go.Scatter(x=x, y=y, mode="lines", name="y = 10 - x"))
+html_fig = fig.to_html()
+```
+```{r, fig.cap="Graph of y = 10 - x"}
+htmltools::knit_print.html(py$html_fig)
+```
+<br>
+We saw an undetermined system with one equation and two unknowns, what if we add another unknown, can it have a unique solution then? 
+You may have developed an intuitive feeling that adding another unknown (more uncertainty) would not make the system have a unique solution (more certainty). 
+But let us examine what happens. Adding a third variable to the equation such that it becomes:
+
+$$ x + y + z = 10$$
+
+This adds another dimension (3D). We could consider 3D perspective for any of the equations we have seen but adding $z$ explicitly says we have *at least* 3D dimensions. 
+Since this is our first encounter with 3D, we give a brief introduction here. A third dimension means that we have a third axis that goes in and out of the 2D plane that we are used to. Let us start from 1D and transition to 2D, and then build on that transition to 3D. Consider this equation $x=2$ in 1D. It represents a point on the $x$-axis.
+
+```{python, include=FALSE}
+# graph x = 2 in 1D
+import plotly.graph_objects as go
+fig = go.Figure(data=go.Scatter(x=[2]))
+fig.update_yaxes(showgrid=False, zeroline=True)
+fig.update_xaxes(showgrid=False, zeroline=False)
+html_fig = fig.to_html()
+```
+```{r, fig.cap="Graph of y = 10 - x"}
+htmltools::knit_print.html(py$html_fig)
+```
+<br>
+Now, consider the same equation $x=2$ but in 2D. This now represents a line parallel to the $y$-axis, going through the same point $x=2$. 
+
+```{python, include=FALSE}
+# graph x = 2 in 2D
+import plotly.express as px
+x = [2 for _ in range(10)]
+y = [x for x in range(-5,5)]
+fig = px.line(x=x, y=y)
+fig.update_yaxes(range=[-2,2])
+fig.update_xaxes(range=[-1,3])
+html_fig = fig.to_html()
+```
+```{r, fig.cap="Graph of x = 2, in 2D"}
+htmltools::knit_print.html(py$html_fig)
+```
+<br>
+That is because, when we say this equation is in 2D, we now have two variables $x$ and $y$. Since $y$ is not restricted, then the equation says that $x=2$ for every value of $y$, which makes a line parallel to the $y$-axis. If we then consider the same equation but in 3D, we now have one more dimension to move into. We can think of it as allowing the point that was in 1D to now move in two dimensions (two because $x$ is restricted) which results in a plane or, think of it as we are allowing the line that we got in 2D to move in one more dimension which might be easier to see how a line shifting sideways makes a plane.
+
+```{python, include=FALSE}
+# graph of the plane x = 2 in 3D
+
+import plotly.graph_objects as go
+import numpy as np
+
+x = np.array([2 for _ in range(0, 20)])  
+y = np.array([x for x in range(-10, 10)]) 
+x, y = np.meshgrid(x, y)
+z = np.array([[0 for _ in range(30)],[5 for _ in range(30)]])
+greenish = [[0, '#7DF8AA'], [1, '#7DF9EE']]
+fig = go.Figure(data=[go.Surface(z=z, x=x, y=y.transpose(), colorscale= greenish, showscale=False),])
+html_fig = fig.to_html()
+```
+```{r, fig.cap="Graph of x = 2 in 3D"}
+htmltools::knit_print.html(py$html_fig)
+```
+<br>
+Another way to look at this when considering higher dimensions and restricting a variable is that when restricting a variable, we are reducing the number of dimensions. 
+For example, when setting $z=4$, we are in a sense taking a slice of the $z$-axis, which makes a 2D $xy$ plane $4$ units above the regular $xy$ plane, 
+which in turn you might consider as being represented by the equation $z=0$ in 3D. 
+*(This might have intrigued your interest in even higher dimensions. Although we will not discuss that here, you are very much encouraged to look further into it)*
+
+So then, what does $x+y+z=10$ look like? First, consider the graph of $x+y=2$ in 2D:
+
+```{python, include=FALSE}
+# graph x = 2 in 2D
+import plotly.express as px
+
+x = [x for x in range(-5,6)]
+y = [2 - x for x in range(-5,6)]
+fig = px.line(x=x, y=y)
+
+html_fig = fig.to_html()
+```
+```{r, fig.cap="Graph of x = 2 in 2D"}
+htmltools::knit_print.html(py$html_fig)
+```
+<br>
+Adding the variable $y$ to the equation $x=2$ removes some of the restriction on $x$ which was completely restricted and places some on $y$ which was completely free and, the result is a line that goes into both $x$ and $y$ directions. 
+Similarly, adding $y$ and $z$ to the equation in 3D, the plane is not parallel to any of the axes anymore and looks something like this:
+
+```{python, include=FALSE}
+# graph of x + y + z = 10 in 3D
+
+import plotly.graph_objects as go
+import numpy as np
+
+x = np.array([x for x in range(-10, 10)]) 
+x, y = np.meshgrid(x, x)
+z = 10 - x - y
+
+fig = go.Figure(data=go.Surface(z=z, x=x, y=y, colorscale=[[0, '#7DF8AA'], [1, '#7DF9EE']], showscale=False))
+fig.update_layout(scene_aspectmode='cube')
+html_fig = fig.to_html()
+```
+```{r, fig.cap="Graph of x + y + z = 10 in 3D"}
+htmltools::knit_print.html(py$html_fig)
+```
+<br>
+Note that the plane is infinitely extending to make an infinite plane. We can only show a subsection. 
+
+There is much more to be said about 3D but for our purposes, this is good enough to get us started. 
+
+Going back to our discussion about determined systems and specifically the question, can adding more variables result in a unique solution? Knowing now that adding a variable makes a plane and that we said a line has no unique solution, then inevitably a plane, which has an infinite number of lines, does not have a unique solution either.
+
+Adding even more variables adds more dimensions but it becomes hard to visualize. 
+But the point here is (no pun intended) that adding more variables cannot make an undetermined system have a unique solution. 
+
+You may ask, does adding more equations have an effect?
+What we just looked at is a single equation. When adding a second equation, for the system to be undetermined, it must have at least three variables. 
+So, we are already in 3D. Let us consider the following undetermined system of equations:
+
+$$ x + y + z = 10$$
+$$ x + y + 2z = 20$$
+
+We saw the plane representing the first equation already. The second equation is another plane that can be graphed as follows:
+
+```{python, include=FALSE}
+# graph of x + y + 2z = 20 in 3D
+
+import plotly.graph_objects as go
+import numpy as np
+
+x = np.array([x for x in range(-10, 10)]) 
+x, y = np.meshgrid(x, x)
+z = (20 - x - y)/2
+
+fig = go.Figure(data=go.Surface(z=z, x=x, y=y, colorscale= [[0, '#6DB8AA'], [1, '#6DB9EE']], showscale=False))
+fig.update_layout(scene_aspectmode='cube')
+html_fig = fig.to_html()
+```
+```{r, fig.cap="Graph of x + y + 2z = 20 in 3D"}
+htmltools::knit_print.html(py$html_fig)
+```
+
+Graphing both of them together looks like this: 
+*(If you are using the interactive book version, feel free to move the graph around to get more perspective)*
+
+```{python, include=FALSE}
+# graph # graph x + y + z = 10 and x + y + 2z = 20
+import plotly.graph_objects as go
+import numpy as np
+
+x = np.array([x for x in range(-10, 10)]) 
+x, y = np.meshgrid(x, x)
+z1 = 10 - x - y
+z2 = (20 - x - y)/2
+
+fig = go.Figure(data=[go.Surface(z=z1, x=x, y=y, colorscale= [[0, '#7DF8AA'], [1, '#7DF9EE']], showscale=False),
+                      go.Surface(z=z2, x=x, y=y, colorscale= [[0, '#3EB8AA'], [1, '#3EB9EE']], showscale=False)])
+fig.update_layout(scene_aspectmode='cube')
+html_fig_2p = fig.to_html()
+```
+```{r, fig.cap="Graph of two planes intersecting"}
+htmltools::knit_print.html(py$html_fig_2p)
+```
+<br>
+The intersection between the two planes represents a line. If we consider any two planes, they could either be parallel or not. 
+If they are parallel (and separate), then they do not intersect, which makes the system inconsistent (no solution). 
+If they are not parallel, no matter how we orient the two planes, the result of the intersection is always a line. 
+That means we have an infinite number of solutions. 
+If we were to add a third equation while each equation has 4 variables (to make it underdetermined), it becomes hard to visualize as each equation represents a 3D space in 4D. 
+But it should still be intuitive enough that whatever number of equations and variables we have, the result is the same  in that we cannot have a unique solution.
+
+The take away from all this discussion about undetermined systems is the following theorem:
+
+```{theorem, undeter-2poss, echo=TRUE, include=TRUE}
+   An undetermined system has either no solution or an infinite number of solutions
+```
+<br>
+
+|     **Corollary (a) of TH \@ref(thm:undeter-2poss)**:
+|     *An undetermined system cannot have a unique solution*
+
+|     **Corollary (b) of TH \@ref(thm:undeter-2poss)**:
+|     *If a solution is found for an undetermined system, then it must have an infinite number of solutions*
+
+
+### Determined Systems
+A determined system has the number of variables equal the number of equations. The simplest case would be one equation and one unknown as follows:
+
+$$x = 1$$
+
+That is already solved, and there is not much to discuss there. Likewise, the following system, or any similarly scaled up system, is already solved:
+
+$$x = 2$$
+$$y = 4$$
+
+A more interesting case is having multiple unknowns in the same equation. Let us first consider this undetermined system:
+
+$$x + y = 1$$
+
+As we should know now, this undetermined system has infinite number of solutions. 
+First, let us make it determined. We could just duplicate the equation as follows:
+
+$$x + y = 1$$
+$$x + y = 1$$
+
+But as we said before, this does not add new information so, the system still has infinite number of solutions as we only have one constraint but two variables. 
+Similarly, adding any derivative of another equation (i.e equivalent) does not add new information, such as in the following:
+
+$$x + y = 1$$
+$$2x + 2y = 2$$
+
+Now we look at a determined system whose number of constraints equals the number of variables:
+
+$$x - y = -1$$
+$$x + y = 3$$
+
+This has a unique solution of $x=1$ and $y=2$. We could ask, how do we tell if the equations are equivalent or not? In other words, do the equations represent different constraints? 
+We will look further into this in a later chapter when we talk about a concept called linear independence, but for now we can use the tools we have of solving by elimination. 
+If we can eliminate some but not all variables, then the involved equations represent different constraints.
+
+We may think now that a determined system with no equivalent equations always has a unique solution. That would be true if non of the constraints in the system introduce any contradictions. So, let us look at such a case:
+
+$$x + y = 1$$
+$$x + y = 2$$
+
+This is a determined system because the number of variables equal the number of equations. 
+Moreover, the number of constraints is equal the number of variables. 
+Yet, this is an inconsistent system of equations. Looking at the system, we see that both equations have the same LHS but different RHS. 
+This system of equation says that the same thing on the left equal different things on the right, which is a contradiction. 
+Attempting to solve this system by elimination or substitution would give contradicting results such as $0=1$, $0=-1$ and $1=2$.
+
+We can also see why that is the case graphically:
+
+```{python, include=FALSE}
+import plotly.graph_objects as go
+
+fig = go.Figure()
+
+x = [x for x in range(-5,6)]
+y = [1 - x for x in range(-5,6)]
+fig.add_trace(go.Scatter(x=x, y=y, mode="lines", name="y = 1- x"))
+y = [2 - x for x in range(-5,6)]
+fig.add_trace(go.Scatter(x=x, y=y, mode="lines", name="y = 2 - x"))
+html_fig = fig.to_html()
+```
+```{r, fig.cap="Graph of two parellal lines"}
+htmltools::knit_print.html(py$html_fig)
+```
+
+These are two parallel lines, so they never intersect to give a solution. 
+The graphical equivalent of the contradiction is saying that two parallel lines can intersect. 
+(Again, we are talking about Euclidean Geometry)
+
+Let us now, consider 3 variables. If we look back at the undetermined system we saw before:
+
+$$ x + y + z = 10$$
+$$ x + y + 2z = 20$$
+
+```{r, fig.cap="Graph of wo planes intersecting"}
+htmltools::knit_print.html(py$html_fig_2p)
+```
+
+In order to make this a determined system, we need to add a third equation representing a third plane. 
+The third plane could intersect the other two as follows:
+
+```{python, include=FALSE}
+# graph two planes intersecting at a line, add a third plane parallel to the line
+
+import plotly.graph_objects as go
+import numpy as np
+
+x = np.array([x for x in range(-10, 10)]) 
+y = np.array([x for x in range(0, 20)]) 
+
+x1, y1 = np.meshgrid(x, x)
+z1 = 10 - x1 - y1
+z2 = (20 - x1 - y1)/2
+
+x3, y3 = np.meshgrid(x, y)
+
+z3 = np.array([[-10 for _ in range(20)],[30 for _ in range(20)]])
+
+fig = go.Figure(data=[go.Surface(z=z1, x=x1, y=y1, colorscale= [[0, '#7DF8AA'], [1, '#7DF9EE']], showscale=False),
+                      go.Surface(z=z2, x=x1, y=y1, colorscale= [[0, '#3EB8AA'], [1, '#3EB9EE']], showscale=False),
+                      go.Surface(z=z3, x=x1, y=y3, colorscale= [[0, '#984973'], [1, '#984973']], showscale=False)])
+fig.update_layout(scene_aspectmode='cube')
+html_fig = fig.to_html()
+```
+```{r, fig.cap="Graph of three-plane consistent system"}
+htmltools::knit_print.html(py$html_fig)
+```
+<br>
+This graph shows a unique solution as the third plane cuts the intersection line at a single point. 
+But if the third plane also intersects the same line as the other two planes, as in the following graph, then the system does not have a unique solution.
+
+```{python, include=FALSE}
+# graph three planes intersecting the same line
+import plotly.graph_objects as go
+import numpy as np
+
+x = np.array([x for x in range(-10, 10)]) 
+y = np.array([x for x in range(0, 20)]) 
+
+x1, y1 = np.meshgrid(x, x)
+z1 = 10 - x1 - y1
+z2 = (20 - x1 - y1)/2
+z3 = (20 + x1 + y1)/2
+
+
+fig = go.Figure(data=[go.Surface(z=z1, x=x1, y=y1, colorscale= [[0, '#7DF8AA'], [1, '#7DF9EE']], showscale=False),
+                      go.Surface(z=z2, x=x1, y=y1, colorscale= [[0, '#3EB8AA'], [1, '#3EB9EE']], showscale=False),
+                      go.Surface(z=z3, x=x1, y=y1, colorscale= [[0, '#984973'], [1, '#984973']], showscale=False)
+                      ])
+camera = dict(
+    up=dict(x=0, y=0, z=1),
+    center=dict(x=0, y=0, z=0),
+    eye=dict(x=1.25, y=-1.25, z=1)
+)
+fig.update_layout(scene_camera=camera, scene_aspectmode='cube')
+html_fig = fig.to_html()
+```
+```{r, fig.cap="Graph of three planes intersecting at a line"}
+htmltools::knit_print.html(py$html_fig)
+```
+<br>
+In fact a determined system can also have no solutions at all as in the case of the following graph:
+
+
+```{python, include=FALSE}
+# graph triangle of planes
+
+import plotly.graph_objects as go
+import numpy as np
+
+z1 = np.array([
+    [1 for _ in range(10)],
+    [10 for _ in range(10)]])
+
+z2 = np.array([
+    [10 for _ in range(10)],
+    [1 for _ in range(10)]])
+
+z3 = np.array([
+    [3 for _ in range(10)],
+    [3 for _ in range(10)]])
+
+fig = go.Figure(data=[
+    go.Surface(z=z1, colorscale= [[0, '#7DF8AA'], [1, '#7DF9EE']], showscale=False),
+    go.Surface(z=z2, colorscale= [[0, '#3EB8AA'], [1, '#3EB9EE']], showscale=False),
+    go.Surface(z=z3, colorscale= [[0, '#984973'], [1, '#984973']], showscale=False, opacity=0.9)])
+
+camera = dict(
+    up=dict(x=0, y=0, z=1),
+    center=dict(x=0, y=0, z=0),
+    eye=dict(x=1.5, y=-1.25, z=1)
+)
+fig.update_layout(scene_camera=camera, scene_aspectmode='cube')
+html_fig = fig.to_html()
+```
+```{r, fig.cap="Graph of three-plane inconsistent system"}
+htmltools::knit_print.html(py$html_fig)
+```
+
+Also, similar to how we got parallel lines when introducing contradictions in 2D, we get parallel planes in 3D, which might be the easiest way to get an inconsistent system:
+
+```{python, include=FALSE}
+# graph triangle of planes
+
+import plotly.graph_objects as go
+import numpy as np
+
+z1 = np.array([
+    [7 for _ in range(10)],
+    [7 for _ in range(10)]])
+
+z2 = np.array([
+    [5 for _ in range(10)],
+    [5 for _ in range(10)]])
+
+z3 = np.array([
+    [3 for _ in range(10)],
+    [3 for _ in range(10)]])
+
+fig = go.Figure(data=[
+    go.Surface(z=z1, colorscale= [[0, '#7DF8AA'], [1, '#7DF9EE']], showscale=False),
+    go.Surface(z=z2, colorscale= [[0, '#3EB8AA'], [1, '#3EB9EE']], showscale=False),
+    go.Surface(z=z3, colorscale= [[0, '#984973'], [1, '#984973']], showscale=False, opacity=0.9)])
+
+camera = dict(
+    up=dict(x=0, y=0, z=1),
+    center=dict(x=0, y=0, z=0),
+    eye=dict(x=1.5, y=-1.25, z=1)
+)
+fig.update_layout(scene_camera=camera, scene_aspectmode='cube')
+html_fig = fig.to_html()
+```
+```{r, fig.cap="Graph of three-plane inconsistent system"}
+htmltools::knit_print.html(py$html_fig)
+```
+
+So, we saw that a determined system can have any of the three solution possibilities of a system that we saw in **Theorem \@ref(thm:3poss)**; no solution, unique solution or infinitely many solutions.
+
+### Overdetermined Systems
+An overdetermined system is one that has more equations than unknowns. As before, we start with the simplest case. 
+The least number of unknowns is 1, and for the system to be overdetermined, we can have at least two equations. 
+Let us start with this simple equation and try to build up an overdetermined system:
+
+$$x = 1$$
+
+One way to make this overdetermined is to add other equations with $x$ equaling different values, but that is contradictory and therefore would make an inconsistent system of equations. 
+Another way is duplicating the same equation. As we discussed in **determined systems**, adding the same equation to the system multiple times does not add any information. 
+So, the following system could be said to be the same as the last:
+
+$$x = 1$$
+$$x = 1$$
+$$x = 1$$
+
+Similarly, since $x = 1$ is the same as $2x = 2$ in that $x$ is still equal $1$, then the following is an equivalent system of equations:
+
+$$x = 1$$
+$$2x = 2$$
+$$3x = 3$$
+
+This was in case of 1 variable; if the equations are equivalent, then we have a unique solution. Similarly, if we have equivalent equations with 2 variables:
+
+$$x + y = 1$$
+$$2x + 2y = 2$$
+$$3x + 3y = 3$$
+
+Then, this has an infinite number of solutions because only one of these equations matter and any of them has infinite number of solutions where $x$ and $y$ add up to $1$.
+
+Another possibility of an overdetermined system is to have a determined system with a unique solution and then one equivalent equation added:
+
+$$x + y = 1$$
+$$x - y = 5$$
+$$2x + 2y = 2$$
+
+Since the first two equations represent a determined system with a unique solution, and because the last equation is not adding information, then this overdetermined system has a unique solution, just like its enclosed determined system.
+
+In this case of two variables, what happens when the third equation is not equivalent to any of the other two as in this example:
+
+$$x + y = 1$$
+$$x - y = 5$$
+$$2x + y = 7$$
+
+We can solve the first two equations to get $x=3$ and $y=-2$. If we plug those values in the last equation, they give $4$ not $7$. 
+We can also solve the last two together to get $x=4$ and $y=-1$. If we plug these values in the first equation, we get $3$ not $1$. 
+Or, we can solve the first and the last equations together to get $x=6$ and $y=-5$ but again, if we plug those values in the middle equation, we get $11$ not $5$. 
+So, any set of two equations make a consistent system but contradict the third equation, and we are not able to solve the three equations together. 
+Let us look at why graphically:
+
+```{python, include=FALSE}
+import plotly.graph_objects as go
+
+fig = go.Figure()
+x_range = range(0, 9)
+x = [x for x in x_range]
+y = [1 - x for x in x_range]
+fig.add_trace(go.Scatter(x=x, y=y, mode="lines", name="y = 1- x"))
+y = [x - 5 for x in x_range]
+fig.add_trace(go.Scatter(x=x, y=y, mode="lines", name="y = x - 5"))
+y = [7 - 2*x for x in x_range]
+fig.add_trace(go.Scatter(x=x, y=y, mode="lines", name="y = 7 - 2x"))
+html_fig = fig.to_html()
+```
+```{r, fig.cap='Graph of x + y = 20'}
+htmltools::knit_print.html(py$html_fig)
+```
+
+As we can see, each two lines intersect at a different point. That is why the system as a whole does not have a solution.
+
+Still, we can make three lines, or any number of lines for that matter, meet at a single point:
+
+```{python, include=FALSE}
+# graph multiple lines intersecting at a single point
+
+import plotly.graph_objects as go
+
+fig = go.Figure()
+
+for i in range(-3,3):
+    x = [x for x in range(-5,5)]
+    y = [2*(5 - i*x) for x in range(-5,5)]
+    fig.add_trace(go.Scatter(x=x, y=y, mode="lines"))
+html_fig = fig.to_html()
+```
+```{r, fig.cap='Graph of x + y = 20'}
+htmltools::knit_print.html(py$html_fig)
+```
+
+This can have different looks in terms of equations. 
+The good news is that it is easy to check for. 
+We first solve any subset of equations then apply that solution to all the other equations and see if they work. 
+If we find anyone that does not work, then the system is inconsistent.
+
+## Constraints vs Equations
+
+This should be clear by now, but it is still good to note that this categorization against the number of variables vs the number of equations is not related to being consistent or inconsistent systems. 
+In fact, they very much overlap as we have seen. What matters is the number of constraints against the number of variables. 
+If the constraints are fewer than the variables, we have infinite number of solutions. 
+If the number of constraints equal the number of variables, we have a unique solution. 
+If the number of constraints is more than the number of variables, we have no solutions. 
+But in any case, if we have contradicting constraints, then there is no solution.
+
+We are still interested in the number of equations because that is what we see first. 
+Let us look at simple examples and see how consistency overlaps with how determined the system is. (Some of the following will serve as a summary)
+
+### Underdetermined and Inconsistent
+
+$$ x + y + z = 5$$ 
+$$ x + y + z = 10$$ 
+
+It should be intuitive that this is inconsistent. Both equations have the same LHS but different RHS. 
+One thing cannot equal unequal things. Solving this system would lead to $5 = 10$ which is contradictory  so, this system is inconsistent.
+
+By definition, an underdetermined system has fewer equations than variables, and consequently, fewer constraints than variables. 
+So, the only way for an underdetermined system to be inconsistent is to have contradicting constraints.
+
+### Underdetermined and Consistent
+
+
+$$ x + y + z = 5$$ 
+$$ x + y + 2z = 10$$ 
+
+This looks similar to the last system except the second equation has $2z$, which removed the contradiction. 
+This now has an infinite number of solutions as there are fewer constraints than variables. 
+To intuitively solve for this, we could rewrite it as:
+
+$$ x + y + z = 5$$ 
+$$ (x + y + z) + z = 10$$
+
+Where what is inside the parenthesis is the same as the first equation. So, we can replace it as such:
+
+$$ x + y + z = 5$$ 
+$$ (5) + z = 10$$
+
+So $z=5$. If we plug $z$ back in and simplify, we get $x+y=0$. Then, we have infinite number of solutions where $x$ and $y$ add up to $0$.
+
+
+Another example of a consistent underdetermined system is a single equation:
+
+$$ x + y = 5$$ 
+
+This is consistent because we have infinite solutions for any two numbers that add up to $5$. Yet another example with 3 unknowns is:
+
+$$ x + y + z = 5$$ 
+
+Again, an underdetermined system always has fewer constraints than variables, and therefore, it is consistent as long as there are no contradictions.
+
+### Determined and Inconsistent
+
+This happens again when we have contradicting constraints such as the following:
+
+$$ x + y = 5$$ 
+$$ x + y = 6$$
+
+A determined system is inconsistent only when there are contradicting constraints.
+
+### Determined and Consistent
+
+$$ x + y = 5$$ 
+$$ x + 2y = 6$$
+
+This is consistent with a unique solution because the number of constraints equals the number of variables. 
+We can solve for this by substitution or elimination to get $x=4$ and $y=1$.
+
+Another example is one that has infinite number of solutions:
+
+$$ x + y = 5$$ 
+$$ 2x + 2y = 10$$
+
+That is because the two equations are **equivalent**, so the number of constraints is fewer than the number of variables.
+
+### Overderdetermined and Inconsistent
+
+$$ x + y = 5$$ 
+$$ 2x + 2y = 5$$
+$$ 3x + 3y = 15$$
+
+This is inconsistent as the second equation contradicts the other two. 
+
+$$ x + y = 5$$ 
+$$ 2x + y = 5$$
+$$ x + 3y = 15$$
+
+This is inconsistent because we have more constraints than variables.
+
+An overdetermined system is inconsistent when we have more constraints than variables or when there are contradicting constraints.
+
+### Overderdetermined and Consistent
+
+$$ x + y = 5$$ 
+$$ 2x + 2y = 10$$
+$$ 3x + 3y = 15$$ 
+
+All these equations here are equivalent; we can divide the second one by $2$ and the third one by $3$ to get the first one. 
+So, we have 2 variables and 1 constraint. The system therefore is consistent with infinite number of solutions.
+
+$$ x + y = 5$$ 
+$$ 2x + y = 10$$
+$$ 3x + 3y = 15$$
+
+This now has two constraints but still two variables. So, this is consistent with a unique solution.
+
+We state what we said regarding constraints and variables as a theorem:
+<br>
+```{theorem, CvsV, echo=TRUE, include=TRUE}
+Let $c$ be the number of constraints and $v$ be the number of variables in a system of equations, assuming no contradictory constraints then the following holds:
+
+- if $v<c$, the system has no solutions. 
+
+- if $v=c$, the system has a unique solution. 
+
+- if $v>c$, the system has an infinite number of solutions. 
+```
+<br>
+This theorem agrees with the previous theorems. 
+First, these three possibilities are the same three in **Theorem \@ref(thm:3poss)** but now tied to conditions. 
+Second, **Theorem \@ref(thm:undeter-2poss)** says that an undetermined system has no solution or infinitely many; it cannot have a unique solution. 
+An undetermined system, with fewer equations than variables by definition, by default has fewer constraints than variables so, that is the same as the third possibility here of $v>c$. 
+An undetermined system is inconsistent only when there is a contradiction but, contradictions make any system inconsistent regardless. 
+
+As for determined and overdetermined systems, we did not have theorems specific to them because they have all the three possibilities of a system which was covered by **Theorem \@ref(thm:3poss)**. 
+What determines which possibility are the number of constraints and variables, and that is what this last theorem provides.

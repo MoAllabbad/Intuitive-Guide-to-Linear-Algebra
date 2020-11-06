@@ -1,0 +1,6 @@
+Package: LA
+Type: Book
+Title: An Intuitive Guide to Linear Algebra
+Version: 0.0.1
+Imports: bookdown
+Remotes: MoAllabbad/Intuitive-Guide-to-Linear-Algebra
