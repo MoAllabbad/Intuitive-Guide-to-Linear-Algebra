@@ -26,7 +26,11 @@ Now, we have a what is called a system of equations:
 $$(x\times mangoes) \times 1\,bill + (y \times avocados) \times 1\, bill= 20 \, bills$$
 $$x = y$$
 
-We call it a system to indicate that we are considering all the equations as a whole rather than individually. For easier reading and a bit more abstraction, we could rewrite the two equations as follows:
+We call it a system to indicate that we are considering all the equations as a whole rather than individually. 
+That means a variable shares the same value across all equations. For example, if $x$ equals $1$ in one equation, 
+then it equals $1$ in all the other equations. 
+
+For easier reading and a bit more abstraction, we could rewrite the two equations as follows:
 
 $$x + y = 20$$
 $$    x = y $$
