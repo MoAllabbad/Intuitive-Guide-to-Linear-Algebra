@@ -15,8 +15,8 @@ description: "This is a detailed and an Intuitive guide to Linear Algebra mathem
 
 This is a detailed and an Intuitive guide to Linear Algebra mathematics. We will start from first principles. 
 We aim to explore the concepts with minimum prior knowledge.
-Knowledge of *College Algebra* would be advantageous. We nevertheless explain most of the required concepts here. 
-Knowledge of things like equations and basic arithmetic is still needed. 
+Knowledge of *College Algebra* would be advantageous. We nevertheless explain some of the required concepts here. 
+Knowledge of things like equations, the number line, the Cartesian Plane, and basic arithmetic is still needed. 
 
 The goal is to introduce things gradually with no logical hoops. 
 New concepts should either follow from previous discussions or basic logic. 

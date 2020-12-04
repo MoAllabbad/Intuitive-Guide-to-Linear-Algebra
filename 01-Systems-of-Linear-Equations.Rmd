@@ -17,11 +17,14 @@ If we wanted to explicitly write this mathematically, we could do something as f
 
 $$(x\times mangoes) \times 1\,bill + (y \times avocados) \times 1\, bill= 20 \, bills$$
 
-The $x$ variable represents the number of mangoes and the $y$ variable represents the number of avocados. Note that we have different variables because the number of each fruit does not have to be the same. Here, you might have a gut feeling that we cannot solve this equation because we only have one equation and more than one unknown. That would be true and, that is something we will discuss extensively later. The bit where we said "to be fair ..." is where we say we want the number of fruits to be equal. To represent this mathematically, we set:
+The $x$ variable represents the number of mangoes and the $y$ variable represents the number of avocados. 
+Note that we have different variables because the number of each fruit does not have to be the same. Here, you might have a gut feeling that we cannot solve this equation because we only have one equation and more than one unknown. 
+That would be true and, that is something we will discuss extensively later. 
+The part where we said "to be fair ..." is where we specify we want the number of fruits to be equal. To represent this mathematically, we set:
 
 $$x = y$$
 
-Now, we have a what is called a system of equations:
+Now, we have what is called a system of equations:
 
 $$(x\times mangoes) \times 1\,bill + (y \times avocados) \times 1\, bill= 20 \, bills$$
 $$x = y$$
@@ -172,7 +175,7 @@ $$ x + 2y = 7 $$
 ```
 
 It is not useful here to just add or subtract the equations, as that will not eliminate any variable. We need to first multiply one or more of the equations by a factor so that either of the variables $x$ or $y$ has the same coefficient in both equations. For example, we could multiply the first equation by $1/2$ to get $x + 3/2 y = 9$. Now, we have the same coefficient for $x$ which is $1$ so, we can subtract one equation from the other to eliminate $x$ and then solve for $y$. However, we are now dealing with fractions, which is something we would like to avoid; not only because it would be easier to deal with by hand, but also it is better for numerical computations. 
-So, we could instead multiply the second equation by $2$ to get $2x + 4y = 14$. Now we have the same system of equations as before in example \@ref(exm:Elimination1), so we can proceed the same way.
+So, we could instead multiply the second equation by $2$ to get $2x + 4y = 14$. Now we have the same system of equations as before in **example \@ref(exm:Elimination1)**, so we can proceed the same way.
 
 You may or may not have realized that this was *basically* the same system we just solved. This might provide you another chance for the realization that it is permitted to do the same operation on both sides of an equation.
 
@@ -265,7 +268,7 @@ htmltools::knit_print.html(py$html_fig)
 If that is not the case, meaning the two lines are not non-parallel, they can only be parallel. 
 If two lines are parallel, they can either be separate or coincide (lie on top of each other). 
 
-If they are parallel and separate, traveling along any line in any direction does not get us any closer to the other line. 
+If they are parallel and separate, then traveling along any line in any direction does not get us any closer to the other line. 
 In such a case where we have two parallel lines but are separate, there is no solution. 
 This covers the second possibility of the system of equations. 
 
@@ -303,18 +306,20 @@ htmltools::knit_print.html(py$html_fig)
 ```
 <br>
 By exhaustion, we have the following theorem:
-<br>
+
 ```{theorem, 3poss, echo=TRUE, include=TRUE}
    A system of linear equations must have either no solution, one solution or infinite number of solutions.
 ```
+
 <br>
 A theorem like this has implications that might not be obvious immediately, so we explicitly state them as corollaries:
 
-|     **Corollary (a) of TH \@ref(thm:3poss)**:
+|     **Corollary (a) of Theorem \@ref(thm:3poss)**:
 |     *A system of equations cannot have a finite number of solutions other than one solution.*
 
-|     **Corollary (b) of TH \@ref(thm:3poss)**:
+|     **Corollary (b) of Theorem \@ref(thm:3poss)**:
 |     *If a system is found to have more than one solution, it must have infinitely many solutions.*
+
 <br>
 A corollary follows logically. It might not be obvious to derive but, once stated, it should be evident.
 
@@ -322,37 +327,211 @@ Considering **Theorem \@ref(thm:3poss)** when we say that a system of equations 
 To avoid the ambiguity between whether a system has a solution at all, and whether it has only one or not, we call a system that has a solution or infinitely many a **consistent** system, and we call a system that does not have any solution an **inconsistent** system. 
 Then, a consistent system of equations has one solution or infinite solutions. 
 
+So, in the next sections, we look at cases where a system can be consistent and inconsistent. 
+We will start in the next section with a special case of a system that is always consistent.
+
+## Homogeneous Systems:
+
+Consider this equation:
+
+$$x+y+z=0$$
+
+What is a *simple* solution to this equation?
+
+Well, we have zero on the RHS. So, if we add nothing on the LHS, then we would also get zero. So, a simple solution is to set all the variables equal to zero.
+This type of equation, where we have only variable terms (things that are added) on one side and zero on the other, is called a **homogeneous** equation. 
+In other words, a homogeneous equation is one where the variables add up to zero.
+
+For example,
+
+$$x+y=0$$ 
+
+and
+
+$$2x-7y=0$$
+
+are homogeneous equations. But:
+
+$$x+y+z=1$$
+
+and 
+
+$$x-2y + 5=0$$
+
+are not homogeneous because the variables do not add up to zero. 
+That last equation is not homogeneous even though the RHS is zero because it is just a rewrite of $$x-2y=-5$$ and so, the variables multiplied by their coefficients do not add up to zero.
+
+Now that we know what a **homogeneous** equation is, a **homogeneous** *system* is one that has all **homogeneous** *equations*.
+
+Consider these systems of equations:
+
+\begin{align*}
+      3x +2y +z &= 0   &    x+y &= 0  \\
+      x  -y  -z &= 0   &    y+z &= 0  \\
+      -x +y +2z &= 0   &   
+\end{align*}
+\begin{align*}
+      x    +y   -z  &= 0   &    5x    &= 0  \\
+    -2x   -3y   -z  &= 0   &    -y    &= 0  \\
+     5x    +y   +2z &= 0   &    x+y+z &= 0  \\
+     5x    +y   +2z &= 0   &
+\end{align*}
+
+
+First question, are these consistent systems? If so, do they, similarly again, have a *simple* solution?
+
+All of these are indeed consistent and, they have a simple solution that has all variables equal to zero. 
+So, we can ask, can a homogeneous system ever be inconsistent?
+
+A homogeneous system consists of all homogeneous equations so, let us think of the general case of a homogeneous equation:
+
+$$c_{1}x_{1} + c_{2}x_{2} + c_{3}x_{3} + c_{4}x_{4} + ... + c_{n}x_{n}= 0$$
+
+Where the $c$'s are some constants and $x$'s are variables.
+If we set each $x$ variable to $0$, then that term equals $0$ regardless of its constant coefficient $c$. If we add up all these zero terms, we must get zero.
+So, a **homogeneous system** is always consistent.
+
+<span class="side-note">
+    Side note: **Homogeneous** means *of the same type*. It refers to the fact that all the terms are of degree $1$, as opposed to having non-zero constants. 
+    Non-zero constants are terms of degree zero that could be written as $cx^0$ which is the same thing as a $c$. This naming reason is not important for our purposes. 
+    It is mentioned for those interested. But you can chose to simply think of it the following way; all the variables must have the *same* zero solution and so it is homogeneous.
+</span>
+
+
+This all zero solution is called the **trivial** solution because well, it is simple and is easy to tell just by looking at the system. 
+A homogeneous system may have other solutions, but it is guaranteed to have *at least* the **trivial** solution as adding nothing of everything is clearly nothing. 
+
+
+```{theorem, homogeneous, echo=TRUE, include=TRUE}
+A homogeneous system is always consistent, with at least the trivial solution. 
+```
+
+<br>
+Since we know by **Theorem \@ref(thm:3poss)** that a consistent system either has a unique solution or infinitely many, 
+and we know by **Theorem \@ref(thm:homogeneous)** that a homogeneous system is always consistent, 
+then by **Theorem \@ref(thm:homogeneous)** we have the following corollaries:
+
+|     **Corollary (a) of Theorem \@ref(thm:homogeneous) and Theorem \@ref(thm:3poss)**:
+|     *A homogeneous system must have one solution or infinitely many*
+
+|     **Corollary (b) of Theorem \@ref(thm:homogeneous) and Theorem \@ref(thm:3poss)**:
+|     *If a homogeneous system is found to have other than the trivial solution, it must have infinitely many solutions*
+
+|     **Corollary (c) of Theorem \@ref(thm:homogeneous) and Theorem \@ref(thm:3poss)**:
+|     *If a homogeneous system is found to have a unique solution, it must be the trivial solution*
+
+<br> 
+We can also look at this graphically. Consider any two lines.
+If we pinpoint the two lines at one point at the origin (zero point), 
+then the only way for the two lines to have more than one solution 
+(that is the intersection at the origin) is for the lines to coincide. 
+That has the same reasoning as to why we can only have one solution or infinitely many in **Theorem \@ref(thm:3poss)** but not a finite number bigger than 1. 
+For example, look at the following animated graph (hit 'Play'):
+
+
+```{python, include=FALSE}
+import plotly.graph_objects as go
+import numpy as np
+
+fig = go.Figure(
+    data=[go.Scatter(x=[-100, 100], y=[0, 0], name="rotate"), 
+          go.Scatter(x=[-np.cos(0.25 * np.pi)*100, np.cos(0.25 * np.pi)*100],
+                     y=[-np.sin(0.25 * np.pi)*100, np.sin(0.25 * np.pi)*100], 
+                     marker_color='rgba(152, 0, 0, .8)',
+                     name="fixed")],
+    layout=go.Layout(
+        xaxis=dict(range=[-5, 5], autorange=False),
+        yaxis=dict(range=[-5, 5], autorange=False),
+        title="Homogeneous: unique or infinitely many solutions",
+        updatemenus=[dict(
+            type="buttons",
+            buttons=[dict(label="Play",
+                          method="animate",
+                          args=[None])])]
+    ),
+
+    frames=[go.Frame(data=[go.Scatter(y=[-100, 100], x=[0, 0])]),
+            go.Frame(data=[go.Scatter(x=[-np.cos(0.25 * np.pi)*100, np.cos(0.25 * np.pi)*100],
+                                      y=[-np.sin(0.25 * np.pi)*100, np.sin(0.25 * np.pi)*100])]),
+            go.Frame(data=[go.Scatter(x=[-100, 100], y=[0, 0])]),
+            go.Frame(data=[go.Scatter(y=[-100, 100], x=[0, 0])]),
+            go.Frame(data=[go.Scatter(x=[-np.cos(0.25 * np.pi)*100, np.cos(0.25 * np.pi)*100],
+                                      y=[-np.sin(0.25 * np.pi)*100, np.sin(0.25 * np.pi)*100])]),
+            go.Frame(data=[go.Scatter(x=[-100, 100], y=[0, 0])])]
+)
+
+fig.update_yaxes(
+    scaleanchor = "x",
+    scaleratio = 1,
+  )
+fig.update_xaxes(
+    scaleanchor = "y",
+    scaleratio = 1,
+  )
+
+html_fig = fig.to_html()
+```
+```{r, fig.cap='Graph of y = x and y = x + 5'}
+htmltools::knit_print.html(py$html_fig)
+```
+<br>
+
+As you can see, the only way you get another intersection, beside at the origin, is when the two lines overlap. 
+Of course by then, we get infinitely many solutions and, that again agrees with our **Theorem \@ref(thm:3poss)** that we just covered last section.
+
+We can see graphically when things coincide, or perhaps more accurately, not distinguish them. 
+So, what does that look like analytically, that is, how do the equations look?
+
+One obvious way to have the same graphical representation is to have the same exact equation but, the more interesting way is to have an **equivalent** equation.
+
+An equivalent equation does not look exactly the same but has the same solution. For example, consider the following:
+
+$$x = 1$$
+$$x + 1 = 2$$
+$$3x = 3$$
+$$3x + 1 = 4$$ 
+
+These equations are equivalent because they have exactly the same solution; $x=1$. 
+Graphically, all these equations represent the same point; $x=1$. 
+If you can add to an equation, multiply it by a constant or perform a combination of these, and you can get from one equation to another, 
+then the two equations are equivalent.
+
+In a system of equations, an equivalent equation does not add information. 
+Therefore, equivalent equations represent one **constraint**. 
+For example, a system with three equations, and two of which are equivalent equations, will have two **constraints**.
+
+These concepts are two sides of the same coin. If we are interested in looking at the number of equations, we may consider equivalent equations.
+If we are interested in looking at independent equations, then we consider the number of constraints by keeping non-equivalent solutions.
+Next section, we explore further how the number of equations, constraints, and variables affects the system of equations.
+
 ## Variable, Equation and Constraint Counting
 
-Earlier, we explored graphically the solution possibilities. Another way to get some insight is by looking at the number of variables against the number of equations in the system. 
+Earlier, we explored graphically the solution possibilities. 
+Another way to get some insight is by looking at the number of variables against the number of equations in the system. 
 If the number of equations is fewer than the number of variables, we call the system **undetermined**. 
 If the number of equations is equal to the number of variables, we call the system **determined**. 
-If the system has more equations than varaiables, then the system is called **overdetermined**. 
-We will continue to use graphs throughout to build intuition, but we will end up with a theorem that does not depend on graphs.
+If the system has more equations than variables, then the system is called **overdetermined**. 
 
-A variable on its own has no constraints, so it has infinite number of possibilities, that is, until a constraint is imposed. In a system of equations, the equation itself is the constraint. For example, $x = 1$ has one variable and one equation, i.e one constraint. The solution here is unique. On the other hand, $x + y = 2$, has fewer constraints than variables. Although the variables do not have complete freedom, this still has infinite possibilities. By comparing the number of constraints and variables, we can gain information about the system.
+<span class="side-note">
+We should note that this comparison is for the system as a whole. For example, consider the following:
 
-Before we discuss that, we first need to briefly discuss **equivalence**:
+$$ x + y = 10$$
+$$ x = 2$$
 
-Let us look again at this simple system
+This is a determined system even though the second equation has only one variable because the whole system has two variables. 
+This system is practically solved so, you probably will not encounter such a system. But it is good to note this distinction.
+</span>
 
-$$x = 1$$
+We will continue to use graphical representations throughout the upcoming discussion concerning counting variables, equations and constraints in order to build intuition, 
+but we will end up with a an understanding that does not depend on graphs.
 
-If we repeat the equation as follows:
-
-$$x = 1$$
-$$x = 1$$
-
-Then, we are not adding any information. We added a second equation but it states the same thing, so this system still has one constraint. Similarly:
-
-$$x = 1$$
-$$2x = 2$$
-
-This only has one constraint as well. The two equations, although do not look the same, are **equivalent**, because the solution for both is $x=1$. 
-Any equations that can be derived from each other are called **equivalent**. 
-By 'derive', we mean that if we can perform the allowed operations on one of the equations - such as by adding the same thing to both sides of an equation or multiplying both sides or performing a combination of these -, and we can get to the other equation, then the two equations are equivalent.
-
-Let us then proceed to our discussion of counting variables and equations.
+Let us first review and expand on some needed concepts. 
+A variable on its own has no constraints, so it has an infinite number of possibilities, that is, until a constraint is imposed. 
+In a system of equations, the equation itself is the constraint. For example, $x = 1$ has one variable and one equation, i.e one constraint. 
+The solution here is unique. On the other hand, $x + y = 2$, has fewer constraints than variables. 
+Although the variables do not have complete freedom, this still has infinite possibilities. 
+We also know that a group of **equivalent** equations represent a single constraint.
+By comparing the number of constraints and variables, we can gain information about the system.
 
 ### Undetermined Systems
 An undetermined system has fewer equations than variables. Consider this simple example:
@@ -551,13 +730,16 @@ The take away from all this discussion about undetermined systems is the followi
 ```{theorem, undeter-2poss, echo=TRUE, include=TRUE}
    An undetermined system has either no solution or an infinite number of solutions
 ```
-<br>
 
-|     **Corollary (a) of TH \@ref(thm:undeter-2poss)**:
+
+|     **Corollary (a) of Theorem \@ref(thm:undeter-2poss)**:
 |     *An undetermined system cannot have a unique solution*
 
-|     **Corollary (b) of TH \@ref(thm:undeter-2poss)**:
+|     **Corollary (b) of Theorem \@ref(thm:undeter-2poss)**:
 |     *If a solution is found for an undetermined system, then it must have an infinite number of solutions*
+
+|     **Corollary (c) of Theorem \@ref(thm:undeter-2poss) and Theorem \@ref(thm:homogeneous)**:
+|     *An undetermined homogeneous system has an infinite number of solutions*
 
 
 ### Determined Systems
@@ -591,11 +773,13 @@ Now we look at a determined system whose number of constraints equals the number
 $$x - y = -1$$
 $$x + y = 3$$
 
-This has a unique solution of $x=1$ and $y=2$. We could ask, how do we tell if the equations are equivalent or not? In other words, do the equations represent different constraints? 
+This has a unique solution of $x=1$ and $y=2$. We could ask, how do we tell if the equations are equivalent or not? 
+In other words, do the equations represent different constraints? 
 We will look further into this in a later chapter when we talk about a concept called linear independence, but for now we can use the tools we have of solving by elimination. 
-If we can eliminate some but not all variables, then the involved equations represent different constraints.
+If we can eliminate some but not all variables between two equations, then the equations represent different constraints.
 
-We may think now that a determined system with no equivalent equations always has a unique solution. That would be true if non of the constraints in the system introduce any contradictions. So, let us look at such a case:
+We may think now that a determined system with no equivalent equations always has a unique solution. 
+That would be true if non of the constraints in the system introduce any contradictions. So, let us look at such a case:
 
 $$x + y = 1$$
 $$x + y = 2$$
@@ -603,7 +787,7 @@ $$x + y = 2$$
 This is a determined system because the number of variables equal the number of equations. 
 Moreover, the number of constraints is equal the number of variables. 
 Yet, this is an inconsistent system of equations. Looking at the system, we see that both equations have the same LHS but different RHS. 
-This system of equation says that the same thing on the left equal different things on the right, which is a contradiction. 
+This system of equations says that the same thing on the left equal different things on the right, which is a contradiction. 
 Attempting to solve this system by elimination or substitution would give contradicting results such as $0=1$, $0=-1$ and $1=2$.
 
 We can also see why that is the case graphically:
@@ -625,15 +809,15 @@ htmltools::knit_print.html(py$html_fig)
 ```
 
 These are two parallel lines, so they never intersect to give a solution. 
-The graphical equivalent of the contradiction is saying that two parallel lines can intersect. 
-(Again, we are talking about Euclidean Geometry)
+The graphical equivalence of the contradiction is saying that two parallel lines can intersect. 
+*(Again, we are talking about Euclidean Geometry)*
 
 Let us now, consider 3 variables. If we look back at the undetermined system we saw before:
 
 $$ x + y + z = 10$$
 $$ x + y + 2z = 20$$
 
-```{r, fig.cap="Graph of wo planes intersecting"}
+```{r, fig.cap="Graph of two planes intersecting"}
 htmltools::knit_print.html(py$html_fig_2p)
 ```
 
@@ -668,7 +852,7 @@ htmltools::knit_print.html(py$html_fig)
 ```
 <br>
 This graph shows a unique solution as the third plane cuts the intersection line at a single point. 
-But if the third plane also intersects the same line as the other two planes, as in the following graph, then the system does not have a unique solution.
+But if the third plane also intersects the same line as the other two planes, then the system does not have a unique solution, just as in the case of the following graph:
 
 ```{python, include=FALSE}
 # graph three planes intersecting the same line
@@ -700,7 +884,7 @@ html_fig = fig.to_html()
 htmltools::knit_print.html(py$html_fig)
 ```
 <br>
-In fact a determined system can also have no solutions at all as in the case of the following graph:
+In fact a determined system can also have no solutions at all as in the case of a three planes that resembles a house of cards:
 
 
 ```{python, include=FALSE}
@@ -746,17 +930,12 @@ Also, similar to how we got parallel lines when introducing contradictions in 2D
 import plotly.graph_objects as go
 import numpy as np
 
-z1 = np.array([
-    [7 for _ in range(10)],
-    [7 for _ in range(10)]])
+x = np.array([x for x in range(-10, 10)]) 
+x, y = np.meshgrid(x, x)
 
-z2 = np.array([
-    [5 for _ in range(10)],
-    [5 for _ in range(10)]])
-
-z3 = np.array([
-    [3 for _ in range(10)],
-    [3 for _ in range(10)]])
+z1 = 5 - x - y
+z2 = 15 - x - y
+z3 = 30 - x - y
 
 fig = go.Figure(data=[
     go.Surface(z=z1, colorscale= [[0, '#7DF8AA'], [1, '#7DF9EE']], showscale=False),
@@ -792,7 +971,7 @@ $$x = 1$$
 $$x = 1$$
 $$x = 1$$
 
-Similarly, since $x = 1$ is the same as $2x = 2$ in that $x$ is still equal $1$, then the following is an equivalent system of equations:
+Similarly, since $x = 1$ is equivalent to $2x = 2$ in that $x$ is still equal $1$, then the following is an equivalent system of equations:
 
 $$x = 1$$
 $$2x = 2$$
@@ -804,7 +983,7 @@ $$x + y = 1$$
 $$2x + 2y = 2$$
 $$3x + 3y = 3$$
 
-Then, this has an infinite number of solutions because only one of these equations matter and any of them has infinite number of solutions where $x$ and $y$ add up to $1$.
+Then, this has an infinite number of solutions because only one of these equations matters and any of them has infinite number of solutions where $x$ and $y$ add up to $1$, similar to an undetermined system.
 
 Another possibility of an overdetermined system is to have a determined system with a unique solution and then one equivalent equation added:
 
@@ -858,7 +1037,7 @@ fig = go.Figure()
 for i in range(-3,3):
     x = [x for x in range(-5,5)]
     y = [2*(5 - i*x) for x in range(-5,5)]
-    fig.add_trace(go.Scatter(x=x, y=y, mode="lines"))
+    fig.add_trace(go.Scatter(x=x, y=y, mode="lines", name=f"y = 10 - {2*i}x" if i > 0 else f"y = 10 + {-2*i}x"))
 html_fig = fig.to_html()
 ```
 ```{r, fig.cap='Graph of x + y = 20'}
@@ -868,16 +1047,12 @@ htmltools::knit_print.html(py$html_fig)
 This can have different looks in terms of equations. 
 The good news is that it is easy to check for. 
 We first solve any subset of equations then apply that solution to all the other equations and see if they work. 
-If we find anyone that does not work, then the system is inconsistent.
+If we find anything that does not work, then the system is inconsistent.
 
 ## Constraints vs Equations
 
-This should be clear by now, but it is still good to note that this categorization against the number of variables vs the number of equations is not related to being consistent or inconsistent systems. 
-In fact, they very much overlap as we have seen. What matters is the number of constraints against the number of variables. 
-If the constraints are fewer than the variables, we have infinite number of solutions. 
-If the number of constraints equal the number of variables, we have a unique solution. 
-If the number of constraints is more than the number of variables, we have no solutions. 
-But in any case, if we have contradicting constraints, then there is no solution.
+This should be clear by now, but it is still good to note that this categorization against the number of variables vs the number of equations is not corollated to being consistent or inconsistent systems. 
+In fact, they very much overlap as we have seen. What matters, *generally*, is the number of constraints against the number of variables. 
 
 We are still interested in the number of equations because that is what we see first. 
 Let us look at simple examples and see how consistency overlaps with how determined the system is. (Some of the following will serve as a summary)
@@ -912,7 +1087,8 @@ $$ x + y + z = 5$$
 $$ (5) + z = 10$$
 
 So $z=5$. If we plug $z$ back in and simplify, we get $x+y=0$. Then, we have infinite number of solutions where $x$ and $y$ add up to $0$.
-
+Also, this equation is both **undetermined** and **homogeneous** so, it has the trivial solution and infinitely many others. 
+(Recall **Corollary (c) of Theorem \@ref(thm:undeter-2poss) and Theorem \@ref(thm:homogeneous)**).
 
 Another example of a consistent underdetermined system is a single equation:
 
@@ -930,8 +1106,6 @@ This happens again when we have contradicting constraints such as the following:
 
 $$ x + y = 5$$ 
 $$ x + y = 6$$
-
-A determined system is inconsistent only when there are contradicting constraints.
 
 ### Determined and Consistent
 
@@ -979,23 +1153,19 @@ $$ 3x + 3y = 15$$
 
 This now has two constraints but still two variables. So, this is consistent with a unique solution.
 
-We state what we said regarding constraints and variables as a theorem:
+$$ x + y = 0$$ 
+$$ 2x + y = 0$$
+$$ x + 3y = 0$$
+
+This is consistent because it is homogeneous even though it has more constraints than variables 
 <br>
-```{theorem, CvsV, echo=TRUE, include=TRUE}
-Let $c$ be the number of constraints and $v$ be the number of variables in a system of equations, assuming no contradictory constraints then the following holds:
-
-- if $v<c$, the system has no solutions. 
-
-- if $v=c$, the system has a unique solution. 
-
-- if $v>c$, the system has an infinite number of solutions. 
-```
 <br>
-This theorem agrees with the previous theorems. 
-First, these three possibilities are the same three in **Theorem \@ref(thm:3poss)** but now tied to conditions. 
-Second, **Theorem \@ref(thm:undeter-2poss)** says that an undetermined system has no solution or infinitely many; it cannot have a unique solution. 
-An undetermined system, with fewer equations than variables by definition, by default has fewer constraints than variables so, that is the same as the third possibility here of $v>c$. 
-An undetermined system is inconsistent only when there is a contradiction but, contradictions make any system inconsistent regardless. 
+*In general*, if the constraints are fewer than the variables, we have infinite number of solutions. 
+If the number of constraints equal the number of variables, we have a unique solution. 
+If the number of constraints is more than the number of variables, we have no solutions. 
+But in any case, if we have contradicting constraints, then there is no solution. 
+Also, as we know, a homogeneous system is always consistent.
 
-As for determined and overdetermined systems, we did not have theorems specific to them because they have all the three possibilities of a system which was covered by **Theorem \@ref(thm:3poss)**. 
-What determines which possibility are the number of constraints and variables, and that is what this last theorem provides.
+We could state that here as a theorem with exceptions but we will cover a more general theorem later once we develop the tools needed.
+That will serve as a quick systematic/mechanical check later. 
+This, however, equips us with understanding the building blocks of systems of equations.

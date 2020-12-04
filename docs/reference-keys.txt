@@ -4,14 +4,15 @@ exm:Substitution3
 exm:Elimination1
 exm:Elimination2
 thm:3poss
+thm:homogeneous
 thm:undeter-2poss
-thm:CvsV
 Systems-of-Linear-Equations
 a-linear-system-of-equations
 solving-systems-of-equations
 substitution
 elimination
 consistent-and-inconsistent-systems-of-equations
+homogeneous-systems
 variable-equation-and-constraint-counting
 undetermined-systems
 determined-systems
