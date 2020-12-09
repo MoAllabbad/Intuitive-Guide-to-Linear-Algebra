@@ -12,4 +12,5 @@ The book is still work in progress but up here is the first chapter. You can sta
 
 ## Credits
 The book is formatted using Bookdown: https://bookdown.org
+
 The graphs are rendered using Plotly: https://plotly.com
